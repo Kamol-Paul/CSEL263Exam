@@ -10,51 +10,33 @@ public class StudentList {
             System.out.println("Sorry! You don't enter any argument!");
         } else if (args[0].equals("a")) {
             System.out.println("Loading data ...");
-            try {
-                BufferedReader s = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
-                String r = s.readLine();
+            BufferedReader str = openFileRead();
+            if (str == NULL) return;
 
-
-                String i[] = r.split(",");
-                for (String j : i) {
-                    System.out.println(j);
-                }
-            } catch (Exception e) {
+            string students[] = str.readLine().split(",");
+            for (string student : students) {
+                System.out.println(student);
             }
             System.out.println("Data Loaded.");
         } else if (args[0].equals("r")) {
             System.out.println("Loading data ...");
-            try {
-                BufferedReader s = new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream("students.txt")));
-                String r = s.readLine();
-                //System.out.println(r);
-                String i[] = r.split(",");
-                Random x = new Random();
-                int y = (x.nextInt() % 4 + 4) % 4;
-
-                System.out.println(i[y]);
-            } catch (Exception e) {
-            }
+            BufferedReader str = openFileRead();
+            if (str == NULL) return;
+            string students[] = str.readLine().split(",");
+            Random random = new Random();
+            int randomNum = ((random.nextInt() % 4) + 4 % 4;
+            System.out.println(students[randomNum]);
             System.out.println("Data Loaded.");
         } else if (args[0].contains("+")) {
             System.out.println("Loading data ...");
-            try {
-                BufferedWriter s = new BufferedWriter(
-                        new FileWriter("students.txt", true));
-                String t = args[0].substring(1);
-                Date d = new Date();
-                String df = "dd/mm/yyyy-hh:mm:ss a";
-                DateFormat dateFormat = new SimpleDateFormat(df);
-                String fd = dateFormat.format(d);
-                s.write(", " + t + "\nList last updated on " + fd);
-                s.close();
-            } catch (Exception e) {
-            }
-
+            BufferedWriter str = openFileWrite();
+            string newStudent = args[0].substring(1);
+            Date date = new Date();
+            String df = "dd/mm/yyyy-hh:mm:ss a";
+            DateFormat dateFormat = new SimpleDateFormat(df);
+            String updateTime = dateFormat.format(date);
+            str.write(", " + newStudent + "\nList last updated on " + updateTime);
+            str.close();
             System.out.println("Data Loaded.");
         } else if (args[0].contains("?")) {
             System.out.println("Loading data ...");
@@ -104,4 +86,25 @@ public class StudentList {
             System.out.println("Sorry! You enter wrong ot invalid Argument");
         }
     }
+
+    private static BufferedReader openFileRead() {
+        BufferedReader str = NULL;
+        try {
+            str = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+        } catch (Exception e) {
+            System.out.println("Sorry! We can't Open the file");
+        }
+        return str;
+    }
+
+    private static BufferedWriter openFileWrite() {
+        BufferedWriter str = NULL;
+        try {
+            str = new BufferedWriter(new FileWriter("students.txt", true));
+        } catch (Exception e) {
+            System.out.println("Sorry! We can't Open the file");
+        }
+        return str;
+    }
+}
 }
