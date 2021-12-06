@@ -79,7 +79,7 @@ public class StudentList {
 							new FileInputStream("students.txt"))); 
 			String D = s.readLine();
 			char a[] = D.toCharArray();			
-			boolean in_word = false;
+			boolean in_word = true;
 			int count=0;
 			for(char c:a) {
 				if(c ==',')
@@ -89,6 +89,7 @@ public class StudentList {
 				}
 				else in_word = false;
 			}
+			if(!in_word) count++;
 			System.out.println(count +" word(s) found ");
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
