@@ -7,9 +7,12 @@ public class StudentList {
 
     public static void main(String[] args) {
 //		Check arguments
+
+        //check if there is no argumnet
         if (args.length < 1) {
             System.out.println(constants.NO_ARG);
         } else if (args[0].equals(constants.SHOW_ALL)) {
+            // show all the students list
             System.out.println(constants.LOADING);
             BufferedReader str = openFileRead();
 
@@ -23,6 +26,7 @@ public class StudentList {
 
             System.out.println(constants.LOADED);
         } else if (args[0].equals(constants.GET_RANDOM)) {
+            // randomly shows a students
             System.out.println(constants.LOADING);
             BufferedReader str = openFileRead();
 
@@ -37,6 +41,7 @@ public class StudentList {
 
             System.out.println(constants.LOADED);
         } else if (args[0].contains(constants.ADD_NEW)) {
+            // add a new students
             System.out.println(constants.LOADING);
             BufferedWriter str = openFileWrite();
 
@@ -55,6 +60,7 @@ public class StudentList {
 
             System.out.println(constants.LOADED);
         } else if (args[0].contains(constants.SEARCH)) {
+            // search a student
             System.out.println(constants.LOADING);
             BufferedReader str = openFileRead();
 
@@ -72,6 +78,7 @@ public class StudentList {
 
             System.out.println(constants.LOADED);
         } else if (args[0].contains(constants.COUNT)) {
+            // count how many student in list
             System.out.println(constants.LOADING);
             BufferedReader str = openFileRead();
 
@@ -88,6 +95,7 @@ public class StudentList {
     }
 
     private static BufferedReader openFileRead() {
+        // open file for all if clause to read
         BufferedReader str = null;
         try {
             str = new BufferedReader(new InputStreamReader(new FileInputStream(constants.FILE)));
@@ -108,6 +116,7 @@ public class StudentList {
     }
 
     private static String getLine(BufferedReader str) {
+        // readline using try catch
         try {
             return str.readLine();
         } catch (Exception E) {
