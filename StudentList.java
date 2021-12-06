@@ -25,10 +25,11 @@ public class StudentList {
 					new InputStreamReader(
 							new FileInputStream("students.txt"))); 
 			String r = s.readLine();
-			System.out.println(r);
+			//System.out.println(r);
 			String i[] = r.split(",");	
 			Random x = new Random();
-				int y = x.nextInt();
+				int y = (x.nextInt()%4+4)%4;
+				
 					System.out.println(i[y]);
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");			
@@ -81,13 +82,14 @@ public class StudentList {
 			boolean in_word = false;
 			int count=0;
 			for(char c:a) {
-				if(c ==' ') 
+				if(c ==',')
 				{
 					if (!in_word) {	count++; in_word =true;	}
 					else { in_word=false;}			
 				}
+				else in_word = false;
 			}
-			System.out.println(count +" word(s) found " + a.length);
+			System.out.println(count +" word(s) found ");
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");				
 		}
