@@ -6,7 +6,9 @@ public class StudentList {
     public static void main(String[] args) {
 
 //		Check arguments
-        if (args[0].equals("a")) {
+        if (args.length < 1) {
+            System.out.println("Sorry! You don't enter any argument!");
+        } else if (args[0].equals("a")) {
             System.out.println("Loading data ...");
             try {
                 BufferedReader s = new BufferedReader(
@@ -98,6 +100,8 @@ public class StudentList {
             } catch (Exception e) {
             }
             System.out.println("Data Loaded.");
+        } else {
+            System.out.println("Sorry! You enter wrong ot invalid Argument");
         }
     }
 }
